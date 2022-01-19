@@ -33,8 +33,15 @@ struct Landmark: Codable {
     let isFeatured: Bool
     let isFavorite: Bool
     let imageName: String
-	
+}
+
+
+extension Landmark {
 	var image: UIImage? {
-		UIImage(named: imageName)
+		return UIImage(named: imageName)
+	}
+	
+	var toDetailViewModel: DetailViewModel {
+		return DetailViewModel(name: name, image: image)
 	}
 }

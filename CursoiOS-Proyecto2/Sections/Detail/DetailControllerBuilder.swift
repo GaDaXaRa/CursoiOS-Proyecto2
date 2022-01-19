@@ -10,8 +10,9 @@ import UIKit
 
 
 class DetailControllerBuilder {
-	func build() -> UIViewController {
+	func build(viewModel: DetailViewModel) -> UIViewController {
 		let viewController = DetailViewController.create()
+		viewController.viewModel = viewModel
 		
 		return viewController
 	}

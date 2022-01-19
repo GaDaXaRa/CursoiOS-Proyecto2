@@ -12,7 +12,11 @@ class InitialControllerBuilder {
     func build() -> UIViewController {
 		let viewController = ListControllerBuilder().build()
         let navigationController = UINavigationController(rootViewController: viewController)
-        
-        return navigationController
+		navigationController.tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), tag: 0)
+		
+		let tabBarController = UITabBarController()
+		tabBarController.setViewControllers([navigationController], animated: false)
+		
+        return tabBarController
     }
 }
