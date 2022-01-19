@@ -13,6 +13,7 @@ class ListControllerBuilder {
 	func build() -> UIViewController {
 		let viewController = ListViewController.createFromStoryboard()
 		viewController.fetchLandmarks = FetchLandmarksFromDisk()
+		viewController.detailBuilder = DetailControllerBuilder()
 		
 		return viewController
 	}

@@ -9,7 +9,7 @@ import UIKit
 
 class ListViewController: UIViewController {
 	var fetchLandmarks: FetchLandmarksUseCase?
-	
+	var detailBuilder: DetailControllerBuilder?
 	
 	@IBOutlet weak var listTableView: UITableView!
 	
@@ -18,6 +18,7 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
 
 		listTableView.dataSource = self
+		listTableView.delegate = self
 		
 		fetchData()
     }
@@ -59,5 +60,14 @@ extension ListViewController: UITableViewDataSource {
 		cell.textLabel?.text = landmark.name
 		
 		return cell
+	}
+}
+
+
+extension ListViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		guard let detailVC = detailBuilder?.build() else { return }
+		
+		navigationController?.pushViewController(detailVC, animated: true)
 	}
 }
