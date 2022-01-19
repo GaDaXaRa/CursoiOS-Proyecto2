@@ -14,10 +14,12 @@ enum LandmarkCategory: String, Codable {
     case mountains = "Mountains"
 }
 
+
 struct LandmarkCoordinate: Codable {
     let longitude: Double
     let latitude: Double
 }
+
 
 struct Landmark: Codable {
     let name: String
