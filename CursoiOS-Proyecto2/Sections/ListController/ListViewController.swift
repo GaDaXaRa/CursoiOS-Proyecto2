@@ -10,6 +10,15 @@ import UIKit
 class ListViewController: UIViewController {
 	var fetchLandmarks: FetchLandmarksUseCase?
 	var detailBuilder: DetailControllerBuilder?
+	var fetchCats: FetchCatsUseCaseProtocol?
+	
+	private var cats = [Cat]() {
+		didSet {
+			DispatchQueue.main.async {
+				self.listTableView.reloadData()
+			}
+		}
+	}
 	
 	@IBOutlet weak var listTableView: UITableView!
 	
@@ -20,7 +29,8 @@ class ListViewController: UIViewController {
 		listTableView.dataSource = self
 		listTableView.delegate = self
 		
-		fetchData()
+		//fetchData()
+		fetchCatsData()
     }
 	
 	
@@ -33,6 +43,13 @@ class ListViewController: UIViewController {
 		didSet {
 			listTableView.reloadData()
 		}
+	}
+	
+	
+	private func fetchCatsData() {
+		fetchCats?.fetchCats(completion: { cats in
+			self.cats = cats
+		})
 	}
 	
 	private func fetchData() {
@@ -49,15 +66,15 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return landmarks.count
+		return cats.count  //landmarks.count
 	}
 	
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = listTableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-		let landmark = landmarks[indexPath.row]
+		let cat = cats[indexPath.row] //landmarks[indexPath.row]
 		
-		cell.textLabel?.text = landmark.name
+		cell.textLabel?.text = cat.tagsText
 		
 		return cell
 	}
@@ -65,12 +82,14 @@ extension ListViewController: UITableViewDataSource {
 
 
 extension ListViewController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	/*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let landmark = landmarks[indexPath.row]
 		
 		guard let detailVC = detailBuilder?.build(viewModel: landmark.toDetailViewModel) else { return }
 		//let detailVC = DetailControllerBuilder().build(viewModel: landmark.toDetailViewModel)
 		
 		navigationController?.pushViewController(detailVC, animated: true)
-	}
+	}*/
 }
+
+
