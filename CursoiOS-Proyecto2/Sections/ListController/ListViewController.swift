@@ -76,6 +76,10 @@ extension ListViewController: UITableViewDataSource {
 		
 		cell.textLabel?.text = cat.tagsText
 		
+		if let url = cat.imageURL, let data = try? Data(contentsOf: url) {
+			cell.imageView?.image = UIImage(data: data)
+		}
+		
 		return cell
 	}
 }
