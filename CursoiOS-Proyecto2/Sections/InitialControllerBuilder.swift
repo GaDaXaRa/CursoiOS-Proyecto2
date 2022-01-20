@@ -10,13 +10,37 @@ import UIKit
 
 class InitialControllerBuilder {
     func build() -> UIViewController {
-		let viewController = ListControllerBuilder().build()
-        let navigationController = UINavigationController(rootViewController: viewController)
-		navigationController.tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), tag: 0)
-		
 		let tabBarController = UITabBarController()
-		tabBarController.setViewControllers([navigationController], animated: false)
+		let viewControllers: [UINavigationController] = [buildList(), buildCollection()]
 		
-        return tabBarController
+		tabBarController.setViewControllers(viewControllers, animated: false)
+		
+		return tabBarController
     }
+}
+
+
+private extension InitialControllerBuilder {
+	func buildList() -> UINavigationController {
+		let viewController = ListControllerBuilder().build()
+		let tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), tag: 0)
+		
+		return buildNavigation(with: viewController, tabBarItem: tabBarItem)
+	}
+	
+	
+	func buildCollection() -> UINavigationController {
+		let viewController = CollectionControllerBuilder().build()
+		let tabBarItem = UITabBarItem(title: "Collection", image: UIImage(systemName: "rectangle.grid.2x2.fill"), tag: 1)
+		
+		return buildNavigation(with: viewController, tabBarItem: tabBarItem)
+	}
+	
+	
+	func buildNavigation(with viewController: UIViewController, tabBarItem: UITabBarItem) -> UINavigationController {
+		let navigationController = UINavigationController(rootViewController: viewController)
+		navigationController.tabBarItem = tabBarItem
+		
+		return navigationController
+	}
 }

@@ -51,6 +51,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Gmi-pn-Atv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TfQ-Kb-9Fe"/>
                 <constraint firstItem="Gmi-pn-Atv" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="WfB-JS-Gef"/>
