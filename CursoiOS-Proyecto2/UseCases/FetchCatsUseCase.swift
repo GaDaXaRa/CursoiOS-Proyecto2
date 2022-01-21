@@ -13,6 +13,7 @@
  */
 
 
+import Alamofire
 import Foundation
 
 
@@ -30,7 +31,19 @@ class FetchCatsFromAPI: FetchCatsUseCaseProtocol {
 		}
 		
 		let request = URLRequest(url: url)
-		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		// Use of Alamofire
+		AF.request(request).responseDecodable { (response: DataResponse<[Cat], AFError>) in
+			switch response.result {
+			case .success(let cats):
+				completion(cats)
+				
+			case .failure:
+				completion([])
+			}
+		}.validate()
+		
+		// Use of URLSession
+		/*let task = URLSession.shared.dataTask(with: request) { data, response, error in
 			guard let data = data else {
 				completion([])
 				
@@ -46,6 +59,6 @@ class FetchCatsFromAPI: FetchCatsUseCaseProtocol {
 			}
 		}
 			
-		task.resume()
+		task.resume()*/
 	}
 }

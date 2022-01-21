@@ -5,12 +5,15 @@
 //  Created by Jorge Fuentes Casillas on 19/01/22.
 //
 
+import Kingfisher
 import UIKit
+
 
 class ListViewController: UIViewController {
 	var fetchLandmarks: FetchLandmarksUseCase?
 	var detailBuilder: DetailControllerBuilder?
 	var fetchCats: FetchCatsUseCaseProtocol?
+	private var favorites = [String]()
 	
 	private var cats = [Cat]() {
 		didSet {
@@ -71,14 +74,19 @@ extension ListViewController: UITableViewDataSource {
 	
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = listTableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+		let cell = listTableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ListTableViewCell
 		let cat = cats[indexPath.row] //landmarks[indexPath.row]
 		
-		cell.textLabel?.text = cat.tagsText
+//		cell.textLabel?.text = cat.tagsText
 		
-		if let url = cat.imageURL, let data = try? Data(contentsOf: url) {
+		/*if let url = cat.imageURL, let data = try? Data(contentsOf: url) {
 			cell.imageView?.image = UIImage(data: data)
-		}
+		}*/
+//		cell.imageView?.kf.indicatorType = .activity
+//		cell.imageView?.kf.setImage(with: cat.imageURL)
+		cell.delegate = self
+		cell.isFavorite = favorites.contains(cat.id)
+		cell.configure(viewModel: cat.toListCellViewModle)
 		
 		return cell
 	}
@@ -96,4 +104,19 @@ extension ListViewController: UITableViewDelegate {
 	}*/
 }
 
+
+extension ListViewController: ListTableViewCellDelegate {
+	func didPressInFavorite(cell: ListTableViewCell) {
+		guard let indexPath = listTableView.indexPath(for: cell) else { return }
+		
+		let cat = cats[indexPath.row]
+		cell.isFavorite = !cell.isFavorite
+		
+		if cell.isFavorite {
+			favorites.append(cat.id)
+		} else if let index = favorites.firstIndex(of: cat.id) {
+			favorites.remove(at: index)
+		}
+	}
+}
 
