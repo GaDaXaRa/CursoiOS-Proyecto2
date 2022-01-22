@@ -42,6 +42,6 @@ extension Landmark {
 	}
 	
 	var toDetailViewModel: DetailViewModel {
-		return DetailViewModel(name: name, image: image)
+		return DetailViewModel(name: name, imageURL: nil)
 	}
 }

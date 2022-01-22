@@ -34,4 +34,12 @@ extension Cat {
 	var toListCellViewModle: ListTableCellViewModel {
 		return ListTableCellViewModel(imageURL: imageURL, text: tagsText)
 	}
+	
+	var toDetailViewModel: DetailViewModel {
+		.init(name: tagsText, imageURL: imageURL)
+	}
+	
+	var toCollectionCellViewModel: CatsCollectionViewCellViewModel {
+		return CatsCollectionViewCellViewModel(name: tagsText, imageURL: imageURL)
+	}
 }

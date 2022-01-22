@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1113A62F279B334B0034EDC6 /* CatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1113A62E279B334A0034EDC6 /* CatsCollectionViewCell.swift */; };
 		115CE6352799B337003EB384 /* FetchCatsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CE6342799B337003EB384 /* FetchCatsUseCase.swift */; };
 		115CE6372799B47A003EB384 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115CE6362799B47A003EB384 /* Cat.swift */; };
 		119FDF822799D6F90056CBB0 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119FDF812799D6F80056CBB0 /* ListTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1113A62E279B334A0034EDC6 /* CatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		115CE6342799B337003EB384 /* FetchCatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCatsUseCase.swift; sourceTree = "<group>"; };
 		115CE6362799B47A003EB384 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		119FDF812799D6F80056CBB0 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				11D350EC27988AF20046E3C3 /* CollectionViewController.storyboard */,
 				11D350EE27988B050046E3C3 /* CollectionViewController.swift */,
 				11D350F027988B9A0046E3C3 /* CollectionControllerBuilder.swift */,
+				1113A62E279B334A0034EDC6 /* CatsCollectionViewCell.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				D786BD2C27982D07004619AD /* InitialControllerBuilder.swift in Sources */,
 				D786BCEC2798278F004619AD /* AppDelegate.swift in Sources */,
 				11D350E127986A060046E3C3 /* ListControllerBuilder.swift in Sources */,
+				1113A62F279B334B0034EDC6 /* CatsCollectionViewCell.swift in Sources */,
 				11D350DF279864C70046E3C3 /* ListViewController.swift in Sources */,
 				11D350EF27988B050046E3C3 /* CollectionViewController.swift in Sources */,
 				11D350F127988B9A0046E3C3 /* CollectionControllerBuilder.swift in Sources */,

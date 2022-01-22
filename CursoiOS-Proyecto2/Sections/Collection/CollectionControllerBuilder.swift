@@ -12,6 +12,8 @@ import UIKit
 class CollectionControllerBuilder {
 	func build() -> UIViewController {
 		let viewController = CollectionViewController.createFromStroyboard()
+		viewController.fetchCats = FetchCatsFromAPI() //viewController.fetchLandmarks = FetchLandmarksFromDisk()
+		viewController.detailBuilder = DetailControllerBuilder()
 		
 		return viewController
 	}

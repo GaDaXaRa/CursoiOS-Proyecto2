@@ -23,6 +23,8 @@ class InitialControllerBuilder {
 private extension InitialControllerBuilder {
 	func buildList() -> UINavigationController {
 		let viewController = ListControllerBuilder().build()
+		viewController.title = "Cutey Kitties List"
+		
 		let tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), tag: 0)
 		
 		return buildNavigation(with: viewController, tabBarItem: tabBarItem)
@@ -31,6 +33,8 @@ private extension InitialControllerBuilder {
 	
 	func buildCollection() -> UINavigationController {
 		let viewController = CollectionControllerBuilder().build()
+		viewController.title = "Cutey Kitties Collection"
+		
 		let tabBarItem = UITabBarItem(title: "Collection", image: UIImage(systemName: "rectangle.grid.2x2.fill"), tag: 1)
 		
 		return buildNavigation(with: viewController, tabBarItem: tabBarItem)
